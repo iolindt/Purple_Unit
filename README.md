@@ -1,53 +1,60 @@
 # Unit Converter
-Convert units like kg↔lb and °C↔°F.
-import sys
 
-class UnitConverter:
-    def __init__(self):
-        self.conversion_map = {
-            "kg_lb": lambda x: x * 2.20462,
-            "lb_kg": lambda x: x / 2.20462,
-            "c_f": lambda x: (x * 9/5) + 32,
-            "f_c": lambda x: (x - 32) * 5/9
-        }
+A lightweight Python application for converting common measurement units.
 
-    def convert(self, value, from_unit, to_unit):
-        key = f"{from_unit}_{to_unit}"
-        if key not in self.conversion_map:
-            raise ValueError(f"Conversion from {from_unit} to {to_unit} not supported.")
-        return self.conversion_map[key](value)
+## Overview
 
+Unit Converter is a console application that performs conversions between different measurement units including length, weight, and temperature.
 
-def parse_input(user_input):
-    try:
-        value, units = user_input.strip().split()
-        from_unit, to_unit = units.split("->")
-        return float(value), from_unit.lower(), to_unit.lower()
-    except Exception:
-        raise ValueError("Invalid input format. Use: <value> <unit_from->unit_to>")
+The project demonstrates modular Python development, mathematical calculations, and formatted console output.
 
+## Features
 
-def main():
-    converter = UnitConverter()
+- Length conversion
+- Weight conversion
+- Temperature conversion
+- Conversion history
+- Formatted output
 
-    print("Unit Converter CLI")
-    print("Examples: 10 kg->lb | 32 f->c | 100 c->f")
-    print("Type 'exit' to quit\n")
+## Project Structure
 
-    while True:
-        user_input = input("Enter conversion: ")
+```
+.
+├── main.py
+├── length.py
+├── weight.py
+├── temperature.py
+├── formatter.py
+├── history.py
+├── examples.py
+└── README.md
+```
 
-        if user_input.lower() == "exit":
-            print("Goodbye!")
-            sys.exit()
+## Example Output
 
-        try:
-            value, from_unit, to_unit = parse_input(user_input)
-            result = converter.convert(value, from_unit, to_unit)
-            print(f"Result: {round(result, 4)}\n")
-        except Exception as e:
-            print(f"Error: {e}\n")
+```
+======= UNIT CONVERTER =======
 
+1500 m = 1.50 km
+5 kg = 5000 g
+32°F = 0°C
 
-if __name__ == "__main__":
-    main()
+History
+-------
+3 conversions completed.
+```
+
+## Technologies
+
+- Python 3
+- Git
+- GitHub
+
+## Future Improvements
+
+- Volume conversions
+- Speed conversions
+- GUI interface
+- JSON history
+- CLI arguments
+
